@@ -1,0 +1,5 @@
+package com.test.employservice.command.controller;
+
+public class EmployeeCommandController {
+
+}

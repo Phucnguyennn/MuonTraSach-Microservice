@@ -1,0 +1,28 @@
+package com.test.employservice.query.controller;
+
+public class EmployeeQueryController {
+	private Logger logger =org.slf4j.LoggerFactory.getLogger(EmployeeserviceApplication.class);
+	@Autowired 
+	private QueryGateway queryGateway;
+	
+	@GetMapping("/{employeeId}")
+    public EmployeeReponseModel getEmployeeDetail(@PathVariable String employeeId) {
+        GetEmployeesQuery getEmployeesQuery = new GetEmployeesQuery();
+        getEmployeesQuery.setEmployeeId(employeeId);
+
+        EmployeeReponseModel employeeReponseModel =
+        queryGateway.query(getEmployeesQuery,
+                ResponseTypes.instanceOf(EmployeeReponseModel.class))
+                .join();
+
+        return employeeReponseModel;
+    }
+	@GetMapping
+	public List<EmployeeReponseModel> getAllEmployee(){
+		List<EmployeeReponseModel> list = queryGateway.query(new GetAllEmployeeQuery(), ResponseTypes.multipleInstancesOf(EmployeeReponseModel.class))
+				.join();
+		logger.info("Danh Sach Nhan Vien: "+list.toString());
+		return list;
+	}
+	
+}

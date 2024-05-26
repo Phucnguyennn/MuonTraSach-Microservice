@@ -1,0 +1,14 @@
+package com.test.borrowService.config;
+
+public class AxonConfig {
+
+    @Bean
+    public XStream xStream() {
+        XStream xStream = new XStream();
+      
+        xStream.allowTypesByWildcard(new String[] {
+                "com.tanthanh.**"
+        });
+        return xStream;
+    }
+}

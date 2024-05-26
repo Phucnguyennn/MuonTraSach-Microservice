@@ -1,0 +1,11 @@
+package com.test.service.controllers;
+
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class ServiceController {
+	public String hello() {
+		return "Hello from Service!";
+	}
+
+}

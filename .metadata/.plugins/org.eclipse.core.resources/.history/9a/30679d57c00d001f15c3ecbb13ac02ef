@@ -1,0 +1,5 @@
+package com.test.client.controllers;
+
+public class ClientController {
+
+}

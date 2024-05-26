@@ -1,0 +1,5 @@
+package com.test.borrowService.command.service;
+
+public class IBorrowService {
+
+}

@@ -1,0 +1,63 @@
+package com.test.employservice.command.controller;
+
+import org.axonframework.commandhandling.gateway.CommandGateway;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.stream.function.StreamBridge;
+import org.springframework.web.bind.annotation.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.test.employservice.command.command.CreateEmployeeCommand;
+import com.test.employservice.command.command.DeleteEmployeeCommand;
+import com.test.employservice.command.command.UpdateEmployeeCommand;
+import com.test.employservice.command.model.EmployeeRequestModel;
+
+import java.util.UUID;
+
+@RestController
+@RequestMapping("/api/v1/employees")
+public class EmployeeCommandController {
+
+    @Autowired 
+    private CommandGateway commandGateway;
+
+    @Autowired
+    private StreamBridge streamBridge;
+
+    @PostMapping
+    public String addEmployee(@RequestBody EmployeeRequestModel model) {
+        CreateEmployeeCommand command = 
+            new CreateEmployeeCommand(UUID.randomUUID().toString(),
+                    model.getFirstName(), model.getLastName(), model.getKin(), false);
+        commandGateway.sendAndWait(command);
+        
+        return "employee added";
+    }
+
+    @PutMapping
+    public String updateEmployee(@RequestBody EmployeeRequestModel model) {
+        UpdateEmployeeCommand command =
+                new UpdateEmployeeCommand(model.getEmployeeId(),
+                        model.getFirstName(),model.getLastName(),model.getKin(),model.getIsDisciplined());
+        commandGateway.sendAndWait(command);
+        return "employee updated";
+    }
+
+    @DeleteMapping("/{employeeId}")
+    public String deleteEmployee(@PathVariable String employeeId) {
+        DeleteEmployeeCommand command = new DeleteEmployeeCommand(employeeId);
+        commandGateway.sendAndWait(command);
+        return "employee deleted";
+    }
+
+    @PostMapping("/sendMessage")
+    public void sendMessage(@RequestBody String message) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            String json = mapper.writeValueAsString(message);
+            streamBridge.send("sendMessage-out-0", json);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+    }
+}
+

@@ -1,0 +1,33 @@
+package com.test.borrowService.command.service;
+
+@Service
+@EnableBinding(Source.class)
+public class BorrowService implements IBorrowService{
+
+	@Autowired
+	private BorrowRepository repository;
+	
+	@Autowired
+	private MessageChannel output;
+	
+	@Override
+	public void sendMessage(Message message) {
+		try {
+			
+			ObjectMapper mapper = new ObjectMapper();
+			String json = mapper.writeValueAsString(message);
+			output.send(MessageBuilder.withPayload(json).build());
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public String findIdBorrowing(String employeeId, String bookId) {
+		
+	return	repository.findByEmployeeIdAndBookIdAndReturnDateIsNull(employeeId,bookId).getId();
+	}
+
+}

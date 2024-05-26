@@ -1,0 +1,5 @@
+package com.test.employservice.query.projection;
+
+public class EmployeeProjection {
+
+}

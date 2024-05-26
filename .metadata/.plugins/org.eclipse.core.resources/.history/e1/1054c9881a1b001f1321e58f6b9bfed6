@@ -1,0 +1,5 @@
+package com.test.borrowService.command.model;
+
+public class BorrowRequestModel {
+
+}

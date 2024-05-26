@@ -1,0 +1,5 @@
+package com.test.borrowService.query.projection;
+
+public class BorrowingProjection {
+
+}

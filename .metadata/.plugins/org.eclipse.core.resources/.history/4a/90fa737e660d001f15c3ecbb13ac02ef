@@ -1,0 +1,5 @@
+package com.test.service.controllers;
+
+public class ServiceController {
+
+}

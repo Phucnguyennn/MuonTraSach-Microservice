@@ -1,0 +1,8 @@
+package com.test.borrowService.command.service;
+
+import com.tanthanh.borrowingservice.command.api.model.Message;
+
+public interface IBorrowService {
+	void sendMessage(Message message);
+	String findIdBorrowing(String employeeId,String bookId);
+}

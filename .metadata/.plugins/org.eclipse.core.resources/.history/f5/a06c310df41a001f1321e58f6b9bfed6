@@ -1,0 +1,2 @@
+spring.application.name=notificationservice
+eureka.client.serviceUrl.defaultZone=http://eureka:password@discovery:8761/eureka

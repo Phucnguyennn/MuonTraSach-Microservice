@@ -1,0 +1,5 @@
+package com.test.borrowService.query.model;
+
+public class BorrowingResponseModel {
+
+}

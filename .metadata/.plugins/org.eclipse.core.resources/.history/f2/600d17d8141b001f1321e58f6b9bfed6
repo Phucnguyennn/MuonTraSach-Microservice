@@ -1,0 +1,5 @@
+package com.test.borrowService.command.aggregate;
+
+public class BorrowAggregate {
+
+}

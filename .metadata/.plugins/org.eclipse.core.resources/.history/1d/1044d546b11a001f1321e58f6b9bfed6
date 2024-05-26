@@ -1,0 +1,5 @@
+package com.test.notificationserver;
+
+public class EmployeeReponseModel {
+
+}

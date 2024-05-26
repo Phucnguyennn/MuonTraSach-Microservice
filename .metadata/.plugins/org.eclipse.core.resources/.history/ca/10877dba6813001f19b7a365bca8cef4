@@ -1,0 +1,13 @@
+package com.test.employservice;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class EmployserviceApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(EmployserviceApplication.class, args);
+	}
+
+}

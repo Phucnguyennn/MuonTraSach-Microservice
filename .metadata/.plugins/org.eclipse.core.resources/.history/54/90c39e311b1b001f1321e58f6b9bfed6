@@ -1,0 +1,5 @@
+package com.test.borrowService.query.controller;
+
+public class BorrowingQueryController {
+
+}
