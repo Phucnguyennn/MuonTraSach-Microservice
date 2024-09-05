@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.stereotype.Controller;
-import org.springframework.cloud.stream.function.StreamBridge;
+//import org.springframework.cloud.stream.function.StreamBridge;
 
 //import org.springframework.cloud.stream.annotation.EnableBinding;
 
@@ -32,8 +32,7 @@ public class EmployeeCommandController {
 	
 //	private MessageChannel output;
 	
-	 @Autowired
-	    private StreamBridge streamBridge;
+
 	
 	@PostMapping
 	public String addEmployee(@RequestBody EmployeeRequestModel model) {
@@ -71,14 +70,14 @@ public class EmployeeCommandController {
 //		}
 //	}
 	
-	 @PostMapping("/sendMessage")
-	    public void sendMessage(@RequestBody String message) {
-	        try {
-	            ObjectMapper mapper = new ObjectMapper();
-	            String json = mapper.writeValueAsString(message);
-	            streamBridge.send("sendMessage-out-0", json);
-	        } catch (JsonProcessingException e) {
-	            e.printStackTrace();
-	        }
-	    }
+//	 @PostMapping("/sendMessage")
+//	    public void sendMessage(@RequestBody String message) {
+//	        try {
+//	            ObjectMapper mapper = new ObjectMapper();
+//	            String json = mapper.writeValueAsString(message);
+//	            streamBridge.send("sendMessage-out-0", json);
+//	        } catch (JsonProcessingException e) {
+//	            e.printStackTrace();
+//	        }
+//	    }
 }

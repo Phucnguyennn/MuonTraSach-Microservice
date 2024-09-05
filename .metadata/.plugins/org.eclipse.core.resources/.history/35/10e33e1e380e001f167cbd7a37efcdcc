@@ -1,0 +1,9 @@
+package com.test.bookservice.command.data;
+
+import jakarta.persistence.Entity;
+
+@Entity
+@TableName("books")
+public class book {
+
+}

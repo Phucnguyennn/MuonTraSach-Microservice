@@ -1,0 +1,5 @@
+package com.test.bookService.query.model;
+
+public class BookResponseModel {
+
+}

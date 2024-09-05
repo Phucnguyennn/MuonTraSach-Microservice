@@ -1,0 +1,33 @@
+package com.test.bookService.query.projection;
+
+public class BookProjection {
+	@Autowired
+	private BookRepository bookRepository;
+	
+	 @QueryHandler
+	    public BookResponseModel handle(GetBookQuery getBooksQuery) {
+		 BookResponseModel model = new BookResponseModel();
+		 Book book = bookRepository.getById(getBooksQuery.getBookId());
+	      BeanUtils.copyProperties(book, model);
+
+	        return model;
+	    }
+	 @QueryHandler List<BookResponseModel> handle(GetAllBooksQuery getAllBooksQuery){
+		 List<Book> listEntity = bookRepository.findAll();
+		 List<BookResponseModel> listbook = new ArrayList<>();
+		 listEntity.forEach(s -> {
+			 BookResponseModel model = new BookResponseModel();
+			 BeanUtils.copyProperties(s, model);
+			 listbook.add(model);
+		 });
+		 return listbook;
+	 }
+	 @QueryHandler
+	    public BookResponseCommonModel handle(GetDetailsBookQuery getDetailsBookQuery) {
+		 BookResponseCommonModel model = new BookResponseCommonModel();
+		 Book book = bookRepository.getById(getDetailsBookQuery.getBookId());
+	      BeanUtils.copyProperties(book, model);
+
+	        return model;
+	    }
+}

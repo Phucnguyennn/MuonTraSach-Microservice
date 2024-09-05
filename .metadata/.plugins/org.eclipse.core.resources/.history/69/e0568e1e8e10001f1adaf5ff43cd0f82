@@ -1,0 +1,5 @@
+package com.test.bookService.query.controller;
+
+public class BookQueryController {
+
+}

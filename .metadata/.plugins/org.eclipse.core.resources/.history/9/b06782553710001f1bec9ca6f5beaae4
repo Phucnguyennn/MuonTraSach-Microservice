@@ -1,0 +1,5 @@
+package com.test.bookService.command.event;
+
+public class BookUpdateEvent {
+
+}

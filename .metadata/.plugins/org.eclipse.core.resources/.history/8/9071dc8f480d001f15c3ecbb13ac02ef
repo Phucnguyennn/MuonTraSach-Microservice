@@ -1,0 +1,2 @@
+spring.application.name=DiscoveryService
+eureka.client.register-with-eureka=false

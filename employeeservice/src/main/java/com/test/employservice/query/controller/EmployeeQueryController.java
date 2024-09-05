@@ -37,6 +37,7 @@ public class EmployeeQueryController {
     }
 	@GetMapping
 	public List<EmployeeReponseModel> getAllEmployee(){
+		GetAllEmployeeQuery getAllEmployeeQuery = new GetAllEmployeeQuery();
 		List<EmployeeReponseModel> list = queryGateway.query(new GetAllEmployeeQuery(), ResponseTypes.multipleInstancesOf(EmployeeReponseModel.class))
 				.join();
 		logger.info("Danh Sach Nhan Vien: "+list.toString());

@@ -1,0 +1,13 @@
+package com.test.DiscoveryService;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+@EnableEurekaServer
+@SpringBootTest
+class DiscoveryServiceApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}

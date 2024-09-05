@@ -1,0 +1,34 @@
+package com.test.bookService.query.controller;
+@RestController
+@RequestMapping("/api/v1/book")
+public class BookQueryController {
+	
+	@Autowired
+	private QueryGateway queryGateway;
+
+	@GetMapping("/{bookId}")
+	public BookResponseModel getBook(@PathVariable String bookId) {
+		GetBookQuery query = new GetBookQuery();
+		query.setBookId(bookId);
+		return queryGateway.query(query, ResponseTypes.instanceOf(BookResponseModel.class)).join();
+	}
+
+	@GetMapping
+	public List<BookResponseModel> getBooks() {
+		FindBooksQuery query = new FindBooksQuery();
+		return queryGateway.query(query, ResponseTypes.multipleInstancesOf(BookResponseModel.class)).join();
+	}
+
+	@GetMapping("/ready")
+	public List<BookResponseModel> getReadyBooks() {
+		FindReadyBooksQuery query = new FindReadyBooksQuery();
+		return queryGateway.query(query, ResponseTypes.multipleInstancesOf(BookResponseModel.class)).join();
+	}
+
+	@GetMapping("/notready")
+	public List<BookResponseModel> getNotReadyBooks() {
+		FindNotReadyBooksQuery query = new FindNotReadyBooksQuery();
+		return queryGateway.query(query, ResponseTypes.multipleInstancesOf(BookResponseModel.class)).join();
+	}
+
+}

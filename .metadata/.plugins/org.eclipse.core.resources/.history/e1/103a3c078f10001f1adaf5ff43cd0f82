@@ -1,0 +1,5 @@
+package com.test.bookService.query.projection;
+
+public class BookProjection {
+
+}
